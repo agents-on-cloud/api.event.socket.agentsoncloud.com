@@ -10,8 +10,7 @@ var http = require('http');
 const parameters = require("../config/parameters");
 const logger = require("../utils/logger");
 const knex = require("../config/database");
-const kafkaConsumerRunner = require("../kafka/consumer")
-const { init: kafkaInit } = require("../kafka/init")
+
 
 /**
  * Get port from environment and store in Express.
@@ -37,11 +36,6 @@ server.listen(port, async () => {
     knex.raw("select version()").then(() => {
       logger.info(`database connected successfully`);
     })
-    await kafkaInit()
-    logger.info(`Kafka connection initiated successfully`);
-    await kafkaConsumerRunner()
-    logger.info(`Kafka consumer created successfully`);
-
 
   } catch (error) {
     logger.emergency("error connecting to database server, error message: " + error.message);

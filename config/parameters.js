@@ -3,7 +3,8 @@ const config = {
     app: {
         name: 'Agents On Cloued Event Gateway',
         env: process.env.NODE_ENV,
-        port: process.env.PORT || 50003
+        port: process.env.PORT,
+        apiGatewayUrl: process.env.API_GATEWAY_URL
     },
     database: {
         databaseAbbreviation: 'AGE',
@@ -45,127 +46,106 @@ const config = {
         topics: [
             {
                 topic: "CIM",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "HRS",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "COM",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "SUP",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "INC",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "PRF",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "NOT",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "BIL",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "CON",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "KNB",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "MRK",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "BKG",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "TSK",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "PRV",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "SRV",
-                allowAutoTopicCreation: false,
-                fromBeginning: false,
+                fromBeginning: true,
             },
             {
                 topic: "FAC",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "INV",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "DMS",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "MRK",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "LOG",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "LGS",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "CRN",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "RPT",
-                allowAutoTopicCreation: false,
+                fromBeginning: false,
+            },
+            {
+                topic: "TRIGGERED",
                 fromBeginning: false,
             },
             {
                 topic: "TS1",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
             {
                 topic: "TS2",
-                allowAutoTopicCreation: false,
                 fromBeginning: false,
             },
 

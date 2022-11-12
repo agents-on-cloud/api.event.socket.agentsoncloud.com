@@ -3,8 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const apiErrorHandler = require('./exceptionHandler/apiErrorHandler');
+const run = require("./kafka/consumer")
+global.constants = require("./config/constants")
+global._ = require('lodash');
 var app = express();
-
 const cors = require("cors");
 app.use(cors())
 
@@ -19,5 +21,5 @@ app.use(cookieParser());
 const router = require("./routers");
 app.use(router);
 app.use(apiErrorHandler);
-
+run()//kafka consumer 
 module.exports = app;

@@ -1,41 +1,50 @@
-const pathRebuilder = require("../utils/pathRebuilder")
-const axios = require("axios");
-const ApiError = require("../exceptionHandler/apiError");
+
+let axios = require("axios");
 let axiosRetry = require('axios-retry');
-const { axiosRetryConfig } = require('../config/parameters')
+
+const { axiosRetryConfig, app } = require('../config/parameters')
 
 
-const endpointDispatcher = async (feature, virturalEndpoint, endpoint, endpointQOS, body, responseType) => {
+const endpointDispatcher = async ({ workspace, uri, body, headers }) => {
+    console.log("🚀 ~ file: endpointDispatcher.js ~ line 9 ~ endpointDispatcher ~ headers", headers)
     try {
-
-        const pathName = pathRebuilder(feature.protocol, feature.domain, endpoint.endpoint, body, headers = {}, responseType = {})
+        let initalRetryDelay = 0
+        let retries = 0
         let config = {
-            retries: endpoint.retries, // number of retries
+            retries: retries, // number of retries
             retryDelay: (retryCount) => {
-
-                return (retryCount * axiosRetryConfig.retriesDelay) + 500; // time interval between retries
+                initalRetryDelay += 0
+                console.log(retryCount)
+                return (retryCount * retries); // time interval between retries
             },
             retryCondition: (error) => {
-                // if retry condition is not specified, by default idempotent requests are retried
+
                 return error;
             },
         }
+
+
         axiosRetry(axios, config);
+        let url = app.apiGatewayUrl + workspace + uri
 
         let request = await axios(
             {
-                url: feature.protocol.toLowerCase() + "://" + feature.domain + (feature.domain === "localhost" ? ":" + feature.port : "/") + encodeURI(pathName),
-                method: endpoint.method.toLowerCase(),
-                body: body,
-                headers: endpoint.header,
-                responseType: responseType
+                url: url,
+                method: "POST",
+                data: body,
+                headers: headers,
+                withCredentials: true,
+                maxContentLength: 100000000,
+                maxBodyLength: 1000000000
             }
         )
+
         delete axiosRetry
         return request
 
     } catch (error) {
-
+        console.log(error.message)
+        console.log(error.request);
         throw (error)
     }
 }

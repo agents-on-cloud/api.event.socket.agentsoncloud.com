@@ -1,5 +1,5 @@
 
-const database = require('../config/database')
+const database = require('../../config/database')
 const findOne = async (tableName, conditions) => {
     try {
         return await database.select(tableName).where(conditions)
