@@ -43,8 +43,10 @@ const endpointDispatcher = async ({ workspace, uri, body, headers }) => {
         return request
 
     } catch (error) {
-        console.log(error.message)
-        console.log(error.request);
+        console.log("error message", error.message)
+        console.log("error status ", error.status)
+        //console.log(error.request);
+        console.log("response data ", error?.response?.data);
         throw (error)
     }
 }

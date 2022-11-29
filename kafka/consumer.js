@@ -14,9 +14,9 @@ async function run() {
                 try {
 
                     const { messageId, timestamp, type, data, metaData } = JSON.parse(message.value);
-                    const { eventId, eventName, actions, parentGwTransactionId, workspace, ciamWorkspace, accessToken } = metaData
+                    const { eventId, eventName, actions, parentGwTransactionId, workspace, ciamWorkspace, accessToken, passmein } = metaData
                     console.log("message: " + util.inspect(JSON.parse(message.value), false, null, true /* enable colors */));
-                    let headers = { workspace: ciamWorkspace, authorization: `Bearer ${accessToken}` }
+                    let headers = { workspace: ciamWorkspace, authorization: `Bearer ${accessToken}`, passmein: passmein ? true : false }
 
                     if (!_.isNil(type) && type === constants.eventMessageType.transaction) {
                         for (let action of actions) {
