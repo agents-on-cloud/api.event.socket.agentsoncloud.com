@@ -117,10 +117,6 @@ const config = {
                 fromBeginning: false,
             },
             {
-                topic: "MRK",
-                fromBeginning: false,
-            },
-            {
                 topic: "LOG",
                 fromBeginning: false,
             },
@@ -134,6 +130,14 @@ const config = {
             },
             {
                 topic: "RPT",
+                fromBeginning: false,
+            },
+            {
+                topic: "VCM",
+                fromBeginning: false,
+            },
+            {
+                topic: "WLT",
                 fromBeginning: false,
             },
             {
