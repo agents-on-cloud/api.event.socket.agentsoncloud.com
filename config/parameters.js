@@ -42,8 +42,33 @@ const config = {
             },
         }
     },
+
     kafka: {
         topics: [
+            {
+                topic: "ETL",
+                fromBeginning: false,
+            },
+            {
+                topic: "QRB",
+                fromBeginning: false,
+            },
+            {
+                topic: "LKP",
+                fromBeginning: false,
+            },
+            {
+                topic: "EST",
+                fromBeginning: false,
+            },
+            {
+                topic: "CLD",
+                fromBeginning: false,
+            },
+            {
+                topic: "APR",
+                fromBeginning: false,
+            },
             {
                 topic: "CIM",
                 fromBeginning: false,
@@ -102,7 +127,7 @@ const config = {
             },
             {
                 topic: "SRV",
-                fromBeginning: true,
+                fromBeginning: false,
             },
             {
                 topic: "FAC",
