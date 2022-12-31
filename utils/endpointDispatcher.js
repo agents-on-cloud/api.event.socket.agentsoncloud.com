@@ -6,7 +6,7 @@ const { axiosRetryConfig, app } = require('../config/parameters')
 
 
 const endpointDispatcher = async ({ workspace, uri, body, headers }) => {
-    console.log("🚀 ~ file: endpointDispatcher.js ~ line 9 ~ endpointDispatcher ~ headers", headers)
+    // console.log("🚀 ~ file: endpointDispatcher.js ~ line 9 ~ endpointDispatcher ~ headers", headers)
     try {
         let initalRetryDelay = 0
         let retries = 0
@@ -43,10 +43,12 @@ const endpointDispatcher = async ({ workspace, uri, body, headers }) => {
         return request
 
     } catch (error) {
+        console.log("-----------------------------------------------------------------------------------------");
+        console.log({ uri, body });
         console.log("error message", error.message)
         console.log("error status ", error.status)
-        //console.log(error.request);
         console.log("response data ", error?.response?.data);
+        console.log("-----------------------------------------------------------------------------------------");
         throw (error)
     }
 }
