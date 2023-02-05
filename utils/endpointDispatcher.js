@@ -23,10 +23,8 @@ const endpointDispatcher = async ({ workspace, uri, body, headers }) => {
             },
         }
 
-
         axiosRetry(axios, config);
         let url = app.apiGatewayUrl + workspace + uri
-
         let request = await axios(
             {
                 url: url,
@@ -38,18 +36,17 @@ const endpointDispatcher = async ({ workspace, uri, body, headers }) => {
                 maxBodyLength: 1000000000
             }
         )
-
         delete axiosRetry
         return request
 
     } catch (error) {
-        console.log("-----------------------------------------------------------------------------------------");
-        console.log({ uri, body });
-        console.log("error message", error.message)
-        console.log("error status ", error.status)
-        console.log("response data ", error?.response?.data);
-        console.log("-----------------------------------------------------------------------------------------");
-        throw (error)
+        // console.log("-----------------------------------------------------------------------------------------");
+        // console.log({ uri, body });
+        // console.log("error message", error.message)
+        // console.log("error status ", error.status)
+        // console.log("response data ", error?.response?.data);
+        // console.log("-----------------------------------------------------------------------------------------");
+        throw error
     }
 }
 
