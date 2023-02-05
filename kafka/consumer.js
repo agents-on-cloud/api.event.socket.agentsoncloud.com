@@ -23,9 +23,12 @@ async function run() {
                         for (let action of actions) {
                             try {
                             const response = await endpointDispatcher({ workspace: workspace.url, uri: action.virtualEndpoint, body: { ...data, eventId, eventName }, headers: headers })
-                            } catch (error) {
+                        // console.log(response);    
+                        } catch (error) {
+                            // console.log(error.response.data);
+                            logger.critical(`endpoint ${action.virtualEndpoint} + fail because ${error.response.data}`)
                                 if (error.code == 'ECONNREFUSED') {
-                                } else if (error.response) {
+                                } else if (error.response.data.message) {
                                     logger.critical(`endpoint ${action.virtualEndpoint} + fail because ${error.response.data.message}`)
                                     // consumer.disconnect()
                                     // The request was made and the server responded with a status code
@@ -37,11 +40,11 @@ async function run() {
                                     // The request was made but no response was received
                                     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                                     // http.ClientRequest in node.js
-                                    console.log(error.request);
+                                    // console.log(error.request);
                                 } else {
                                     // console.log(error);
                                     // Something happened in setting up the request that triggered an Error
-                                    console.log('Error', error.message);
+                                    // console.log('Error', error.message);
                                 }
                             }
                         }
