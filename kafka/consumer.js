@@ -22,8 +22,10 @@ async function run() {
                     if (!_.isNil(type) && type === constants.eventMessageType.transaction) {
                         for (let action of actions) {
                             try {
-                            const response = await endpointDispatcher({ workspace: workspace.url, uri: action.virtualEndpoint, body: { ...data, eventId, eventName }, headers: headers })
-                        // console.log(response);    
+                             logger.notice(`endpoint ${action.virtualEndpoint} in`)   
+                             const response = await endpointDispatcher({ workspace: workspace.url, uri: action.virtualEndpoint, body: { ...data, eventId, eventName }, headers: headers })
+                             logger.notice(`endpoint ${action.virtualEndpoint} out`)   
+                            
                         } catch (error) {
                             // console.log(error.response.data);
                             logger.critical(`endpoint ${action.virtualEndpoint} + fail because ${error.response.data}`)
