@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "api.event.notifier.agentsoncloud.com_Release_3",
       script: "./bin/www",
-      instances: "6",
+      instances: "1",
       exec_mode: "cluster",
     },
   ],
