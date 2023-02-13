@@ -25,7 +25,7 @@ const consumerInit = async function () {
 
     await consumer.connect();
     await consumer.subscribe({
-      topic: "ETL",
+      topic: "ALL",
       fromBeginning: false
     });
 
