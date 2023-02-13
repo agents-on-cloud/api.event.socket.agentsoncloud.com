@@ -24,13 +24,9 @@ const consumerInit = async function () {
     let consumer = await kafka.consumer({ groupId: "1" });
 
     await consumer.connect();
-    await consumer.subscribe({
-      topic: "ALL",
-      fromBeginning: false
-    });
-    // for (let topic of topics) {
-    //   await consumer.subscribe(topic);
-    // }
+    for (let topic of topics) {
+      await consumer.subscribe(topic);
+    }
 
     return consumer;
   } catch (error) {
