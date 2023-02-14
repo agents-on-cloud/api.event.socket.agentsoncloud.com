@@ -15,12 +15,12 @@ pipeline {
                         verbose: true,
                         transfers: [
                         sshTransfer(
-                            execCommand: " rm -rf /var/www/api.event.notifier.agentsoncloud.com_Release_3"
+                            execCommand: " rm -rf /var/www/api.event.socket.agentsoncloud.com_Release_3"
                         ),
                         sshTransfer(
                             sourceFiles: "**/*",
-                            remoteDirectory: "api.event.notifier.agentsoncloud.com_Release_3",
-                            execCommand:"cd /var/www/api.event.notifier.agentsoncloud.com_Release_3 && sudo npm i"
+                            remoteDirectory: "api.event.socket.agentsoncloud.com_Release_3",
+                            execCommand:"cd /var/www/api.event.socket.agentsoncloud.com_Release_3 && sudo npm i"
                            
                         ),
                     ])
@@ -44,13 +44,13 @@ pipeline {
                         verbose: true,
                         transfers: [
                        sshTransfer(
-                                 execCommand: "cd /var/www/api.event.notifier.agentsoncloud.com_Release_3 && pm2 start"
+                                 execCommand: "cd /var/www/api.event.socket.agentsoncloud.com_Release_3 && pm2 start"
                          ),
                          sshTransfer(
-                                 execCommand: "pm2 delete api.event.notifier.agentsoncloud.com_Release_3 "
+                                 execCommand: "pm2 delete api.event.socket.agentsoncloud.com_Release_3 "
                          ),
                          sshTransfer(
-                                 execCommand: "cd /var/www/api.event.notifier.agentsoncloud.com_Release_3 && pm2 start"
+                                 execCommand: "cd /var/www/api.event.socket.agentsoncloud.com_Release_3 && pm2 start"
                          )
                      
                     ])
