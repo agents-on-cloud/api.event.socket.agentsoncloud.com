@@ -43,12 +43,20 @@ socket.on("eventHandler", async(data) => {
          const response = await endpointDispatcher({ workspace: workspace.url, uri: action.virtualEndpoint, body: { ...data, eventId, eventName }, headers: headers })
          logger.notice(`endpoint ${action.virtualEndpoint} out`)   
         
-    } catch (error) {
-        // console.log(error);
-        logger.critical(`endpoint ${action.virtualEndpoint} + fail because ${error?.response?.data}`)
+    } catch (error) {        
             if (error.code == 'ECONNREFUSED') {
             } else if (error.response.data.message) {
                 logger.critical(`endpoint ${action.virtualEndpoint} + fail because ${error?.response?.data?.message}`)
+                return
+                // consumer.disconnect()
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                // console.log(error.response); 
+                // console.log(error.response.status);
+                // console.log(error.response.headers);
+            }
+            else if (error.response.data) {
+                logger.critical(`endpoint ${action.virtualEndpoint} + fail because ${error?.response?.data}`)
                 // consumer.disconnect()
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
