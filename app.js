@@ -40,7 +40,7 @@ socket.on("eventHandler", async(data) => {
     for (let action of actions) {
         try {
          logger.notice(`endpoint ${action.virtualEndpoint} in`)   
-         const response = await endpointDispatcher({ workspace: workspace.url, uri: action.virtualEndpoint, body: { ...data, eventId, eventName }, headers: headers })
+         const response = await endpointDispatcher({ workspace: workspace.url, uri: action.virtualEndpoint, body: { ...data.data, eventId, eventName }, headers: headers })
          logger.notice(`endpoint ${action.virtualEndpoint} out`)   
         
     } catch (error) {        
