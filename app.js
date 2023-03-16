@@ -26,7 +26,8 @@ app.use(router);
 app.use(apiErrorHandler);
 // run()//kafka consumer 
 const env = process?.env?.NODE_ENV || "development";
-const ioConnection = `https://api.socket.${env}.agentsoncloud.com`;
+// const ioConnection = `http://localhost:50503`;
+const ioConnection = `http://api.socket.${env}.agentsoncloud.com`;
 let socket = io.connect(ioConnection, { reconnect: true });
 
 socket.emit("join_room", "all");
@@ -37,7 +38,9 @@ socket.on("eventHandler", async(data) => {
     let headers = { workspace: ciamWorkspace, authorization: `Bearer ${accessToken}`, passmein: passmein ? true : false }
     // console.log(headers);
 
-    for (let action of actions) {
+    actions.forEach(async action => {
+        
+     
         try {
          logger.notice(`endpoint ${action.virtualEndpoint} in`)   
          const response = await endpointDispatcher({ workspace: workspace.url, uri: action.virtualEndpoint, body: { ...data.data, eventId, eventName }, headers: headers })
@@ -47,7 +50,7 @@ socket.on("eventHandler", async(data) => {
             if (error.code == 'ECONNREFUSED') {
             } else if (error.response.data.message) {
                 logger.critical(`endpoint ${action.virtualEndpoint} + fail because ${error?.response?.data?.message}`)
-                return
+                // return
                 // consumer.disconnect()
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
@@ -74,7 +77,7 @@ socket.on("eventHandler", async(data) => {
                 // console.log('Error', error.message);
             }
         }
-    }
+    })
     
 });
 
