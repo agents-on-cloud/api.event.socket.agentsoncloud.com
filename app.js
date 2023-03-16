@@ -27,7 +27,7 @@ app.use(apiErrorHandler);
 // run()//kafka consumer 
 const env = process?.env?.NODE_ENV || "development";
 // const ioConnection = `http://localhost:50503`;
-const ioConnection = `http://api.socket.${env}.agentsoncloud.com`;
+const ioConnection = `https://api.socket.${env}.agentsoncloud.com`;
 let socket = io.connect(ioConnection, { reconnect: true });
 
 socket.emit("join_room", "all");
