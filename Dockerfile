@@ -10,5 +10,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 50202
+EXPOSE 50252
 CMD [ "node", "./bin/www" ]
