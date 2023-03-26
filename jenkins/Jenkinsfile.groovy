@@ -1,2 +1,2 @@
 @Library("shared-library") _
-docker(name:"api.development.agentsoncloud.com")
+docker(name:"api.event.socket.agentsoncloud.com")
