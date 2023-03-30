@@ -28,7 +28,7 @@ app.use(apiErrorHandler);
 const env = process?.env?.NODE_ENV || "development";
 // const ioConnection = `http://localhost:50503`;
 const ioConnection = `https://api.socket.${env}.agentsoncloud.com`;
-let socket = io.connect(ioConnection, { reconnect: true });
+let socket = io.connect(ioConnection);
 
 socket.emit("join_room", "all");
 socket.on("eventHandler", async(data) => {
