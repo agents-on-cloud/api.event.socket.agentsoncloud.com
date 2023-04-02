@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "amqplib": "^0.10.3",
     "autoprefixer": "^10.4.4",
     "axios": "^0.27.2",
     "axios-retry": "^3.3.1",
