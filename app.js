@@ -11,6 +11,7 @@ const cors = require("cors");
 let io = require("socket.io-client");
 app.use(cors())
 const endpointDispatcher = require('./utils/endpointDispatcher');
+
 const logger = require("./utils/logger.js");
 
 
@@ -34,7 +35,7 @@ connectQueue()  // call the connect function
 
 async function connectQueue() {
     try {
-        connection = await amqp.connect("amqp://localhost:5672");
+        connection= await amqp.connect(process.env.RABBITMQ);
         channel = await connection.createChannel()
 
         await channel.assertQueue("test-queue")
