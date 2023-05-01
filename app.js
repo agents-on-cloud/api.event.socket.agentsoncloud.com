@@ -36,6 +36,7 @@ connectQueue()  // call the connect function
 async function connectQueue() {
     try {
         connection= await amqp.connect(process.env.RABBITMQ);
+        console.log("RABBITMQ",process.env.RABBITMQ);
         channel = await connection.createChannel()
 
         await channel.assertQueue("test-queue")
