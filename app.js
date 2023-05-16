@@ -37,10 +37,10 @@
 //         connection = await amqp.connect("amqp://localhost:5672");
 //         channel = await connection.createChannel()
 
-//         await channel.assertQueue("test-queue")
+//         await channel.assertQueue("test")
 //         // 
 //         // let eventMessage
-//         channel.consume("test-queue", msg => {
+//         channel.consume("test", msg => {
 //             let data = JSON.parse(`${Buffer.from(msg.content)}`);
 //             const { eventId, eventName, actions, parentGwTransactionId, workspace, ciamWorkspace, accessToken, passmein } = data.metaData
 //             let headers = { workspace: ciamWorkspace, authorization: `Bearer ${accessToken}`, passmein: passmein ? true : false }
@@ -126,10 +126,10 @@ async function connectQueue() {
     console.log("RABBITMQ", process.env.RABBITMQ);
     channel = await connection.createChannel();
 
-    await channel.assertQueue("test-queue");
+    await channel.assertQueue("test");
 
     // Consume messages from the queue
-   await channel.consume("test-queue", async (msg) => {
+   await channel.consume("test", async (msg) => {
       try {
         let data = JSON.parse(msg.content.toString());
         const {
