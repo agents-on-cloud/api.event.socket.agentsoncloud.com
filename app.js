@@ -174,13 +174,14 @@ async function connectQueue() {
         channel.nack(msg);
       }
     });
+    channel.close()
   } catch (error) {
     console.error("Failed to connect to RabbitMQ:", error);
     // Retry the connection after a delay
     // setTimeout(connectQueue, 1000);
   }
 }
-setInterval(connectQueue,2000)
+// setInterval(connectQueue,2000)
 // setTimeout(connectQueue, 2000);
 connectQueue();
 
