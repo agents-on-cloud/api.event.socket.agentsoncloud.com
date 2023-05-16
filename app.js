@@ -177,10 +177,11 @@ async function connectQueue() {
   } catch (error) {
     console.error("Failed to connect to RabbitMQ:", error);
     // Retry the connection after a delay
-    setTimeout(connectQueue, 1000);
+    // setTimeout(connectQueue, 1000);
   }
 }
-
+setInterval(connectQueue,2000)
+// setTimeout(connectQueue, 2000);
 connectQueue();
 
 module.exports = app;
