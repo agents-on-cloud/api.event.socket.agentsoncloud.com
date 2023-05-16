@@ -1,2 +1,2 @@
 @Library("shared-library") _
-branchVariable(name:"api.event.socket.agentsoncloud.com")
+docker(name:"api.event.socket.agentsoncloud.com")
