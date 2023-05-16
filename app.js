@@ -183,7 +183,7 @@ async function connectQueue() {
   }finally {
     // Close the connection and channel when you're done
     if (channel) {
-      await channel.close();
+      // await channel.close();
     }
     if (connection) {
       // await connection.close();
