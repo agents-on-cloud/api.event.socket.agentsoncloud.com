@@ -121,14 +121,14 @@ var channel, connection;
 
 async function connectQueue() {
   try {
-    connection = await amqp.connect(process.env.RABBITMQ);
+    connection = await amqp.connect("amqp://localhost:5672");
     console.log("RABBITMQ", process.env.RABBITMQ);
     channel = await connection.createChannel();
 
     await channel.assertQueue("test-queue");
 
     // Consume messages from the queue
-    channel.consume("test-queue", async (msg) => {
+   await channel.consume("test-queue", async (msg) => {
       try {
         let data = JSON.parse(msg.content.toString());
         const {
