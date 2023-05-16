@@ -1,3 +1,4 @@
+
 FROM node:16.19.1-alpine3.16
 
 # Create app directory
@@ -12,3 +13,4 @@ COPY . .
 
 EXPOSE 50252
 CMD [ "node", "./bin/www" ]
+
