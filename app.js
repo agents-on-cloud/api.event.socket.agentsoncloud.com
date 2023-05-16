@@ -174,14 +174,26 @@ async function connectQueue() {
         channel.nack(msg);
       }
     });
-    setTimeout(channel.close(), 2000);
+    // setTimeout(closeConnect(), 2000);
   } catch (error) {
     console.error("Failed to connect to RabbitMQ:", error);
     // Retry the connection after a delay
     // setTimeout(connectQueue, 1000);
+  }finally {
+    // Close the connection and channel when you're done
+    if (channel) {
+      await channel.close();
+    }
+    if (connection) {
+      await connection.close();
+    }
   }
 }
 // setInterval(connectQueue,2000)
 connectQueue();
+
+// const closeConnect=()=>{
+//   channel.close
+// }
 
 module.exports = app;
