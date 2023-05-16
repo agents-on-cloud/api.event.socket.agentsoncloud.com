@@ -192,7 +192,7 @@ async function connectQueue() {
 }
 connectQueue();
 
-setInterval(connectQueue,5000)
+// setInterval(connectQueue,5000)
 // const closeConnect=()=>{
 //   channel.close
 // }
