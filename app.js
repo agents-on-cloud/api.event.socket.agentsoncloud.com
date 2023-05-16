@@ -122,7 +122,7 @@ var channel, connection;
 async function connectQueue() {
   try {
     // connection = await amqp.connect("amqp://localhost:5672");
-    connection = await amqp.connect(process.env.RABBITM);
+    connection = await amqp.connect(process.env.RABBITMQ);
     console.log("RABBITMQ", process.env.RABBITMQ);
     channel = await connection.createChannel();
 
